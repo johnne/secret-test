@@ -32,13 +32,12 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        env:
-          secret_ids: ${{ secrets.TEST_IDS }}          
         run: |
-          echo $secret_ids | sed 's/,/\t/g' > ids.txt
+          echo $secret_ids | echo $secret| tr ',' ' ' | sed -r 's/(([^[:blank:]]+[[:blank:]]+){3})/\1\n/g' > ids.txt
+          python read_ids.py
       - uses: actions/upload-artifact@v4
         with:
-          path: ids.txt
+          path: ids.csv
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
