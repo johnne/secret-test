@@ -1,0 +1,13 @@
+[workspace]
+authors = ["John Sundh <john.sundh@scilifelab.se>"]
+channels = ["conda-forge"]
+name = "secret-test"
+platforms = ["osx-arm64","osx-64","linux-64"]
+version = "0.1.0"
+
+[tasks]
+test = {cmd = "python read_ids.py"}
+
+[dependencies]
+python = "*"
+polars = "*"
