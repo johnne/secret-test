@@ -33,7 +33,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          echo $secret_ids | echo $secret| tr ',' ' ' | sed -r 's/(([^[:blank:]]+[[:blank:]]+){3})/\1\n/g' > ids.txt
+          echo $secret_ids | echo $secret | tr ',' ' ' | awk 'ORS=(!(NR%3)?"\n":" ")' RS=" " > ids.txt
           pixi run test
       - uses: actions/upload-artifact@v4
         with:
