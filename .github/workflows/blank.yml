@@ -34,7 +34,7 @@ jobs:
       - name: Run a one-line script
         run: |
           echo $secret_ids | echo $secret| tr ',' ' ' | sed -r 's/(([^[:blank:]]+[[:blank:]]+){3})/\1\n/g' > ids.txt
-          python read_ids.py
+          pixi run test
       - uses: actions/upload-artifact@v4
         with:
           path: ids.csv
