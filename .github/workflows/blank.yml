@@ -24,9 +24,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - uses: actions/upload-artifact@v4
-        with:
-          path: ids.txt
       - uses: prefix-dev/setup-pixi@v0.9.4
         with:
           pixi-version: v0.62.2
@@ -37,6 +34,9 @@ jobs:
       - name: Run a one-line script
         run: |
           echo $secret_ids | sed 's/,/\t/g' > ids.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          path: ids.txt
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
